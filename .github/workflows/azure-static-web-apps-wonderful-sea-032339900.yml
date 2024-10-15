@@ -34,7 +34,8 @@ jobs:
       - name: Build FastAPI app
         run: |
           mkdir -p ./api  # Create a folder for the API if needed
-          cp -r * ./api   # Move all your app files into the `api` folder
+          find . -mindepth 1 -maxdepth 1 -not -name 'api' -exec cp -r {} ./api \;
+
 
       - name: Deploy to Azure Static Web Apps
         id: builddeploy
